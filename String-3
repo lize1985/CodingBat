@@ -1,0 +1,154 @@
+def sum13(nums):
+  index=0
+  result=[]
+  while index<len(nums):
+    if nums[index] == 13:
+      index=index+2
+    else:
+      result.append(nums[index])
+      index=index+1
+  print(result)
+  return sum(result)
+
+#sum13([1, 2, 2, 1, 13])
+
+
+
+
+def countYZ(str):
+    pre=""
+    count=0
+    for e in str.lower():
+        if not e.isalpha():
+            if pre=='y' or pre=='z':
+                count=count+1
+        pre=e
+    if pre == 'y' or pre=='z':
+        count=count+1
+    return count
+
+#print(countYZ("fez day"))
+#print(countYZ("day fez"))
+#print(countYZ("day fyyyz"))
+
+
+def withoutString(base, remove):
+    bindex=0
+    rlen=len(remove)
+    output=""
+    while bindex < len(base):
+        if bindex+rlen<=len(base) and base[bindex:bindex+rlen].lower() == remove.lower():
+            bindex=bindex+rlen-1
+        else:
+            output=output+base[bindex]
+        bindex=bindex+1
+    return output
+
+#print(withoutString("Hello there", "llo"))
+#print(withoutString("Hello there", "e"))
+#print(withoutString("Hello there", "x"))
+
+
+def equalIsNot(str):
+    #return str.count("is")==str.count("not")
+    idx=0
+    c1,c2=0,0
+    while idx<len(str):
+        if idx+2<=len(str) and str[idx:idx+2]=='is':
+            idx=idx+1
+            c1=c1+1
+        if idx+3<=len(str) and str[idx:idx+3]=='not':
+            idx=idx+2
+            c2=c2+1
+        idx=idx+1
+    return c1==c2
+
+
+#print(equalIsNot("This is not"));
+#print(equalIsNot("This is notnot"));
+#print(equalIsNot("noisxxnotyynotxisi"));
+
+def gHappy(str):
+    index=0;
+    while index<len(str):
+        if str[index]=='g':
+            if not ((index>0 and str[index-1]=='g') or (index+1<len(str) and str[index+1]=='g')):
+                return False
+        index=index+1
+    return True
+#print(gHappy("xxggxx"))
+#print(gHappy("xxgxx"))
+#print(gHappy("xxggyygxx"))
+
+
+def countTriple(str):
+    index=0
+    count=0
+    while index<len(str):
+        if index>0 and str[index-1]==str[index]and index+1<len(str)and str[index+1]==str[index]:
+            count=count+1
+        index=index+1
+    return count
+
+#print(countTriple("abcXXXabc"))
+#print(countTriple("xxxabyyyycd"))
+#print(countTriple("a"))
+
+def sumDigits(str):
+    count =0;
+    for c in str:
+        if c.isdigit():
+            count=count+int(c)
+    return count
+
+#print(sumDigits("aa1bc2d3"))
+#print(sumDigits("aa11b33"))
+#print(sumDigits("Chocolate"))
+
+def sameEnds(str):
+    slen=len(str)
+    for i in reversed(range(int(slen/2)+1)):
+        if str[:i]==str[slen-i:slen]:
+            return str[:i]
+
+#print(sameEnds("abXYab"))
+#print(sameEnds("xx"))
+#print(sameEnds("xxx"))
+
+def sumNumbers(str):
+    out=""
+    sum=0
+    for c in str:
+        if c.isdigit():
+            out=out+c
+        else:
+            if out:
+                sum=sum+int(out)
+            out=""
+    if out:
+        sum=sum+int(out)
+    return sum
+
+print(sumNumbers("abc123xyz"))
+print(sumNumbers("aa11b33"))
+print(sumNumbers("7 11"))
+
+def notReplace(str):
+    index =0
+    out=""
+    while index < len(str):
+        if str[index:index+2] == "is":
+            if (index>0 and str[index].isalpha()) or (index+2 < len(str) and str[index+2].isalpha()):
+                out=out+str[index]
+            else:
+                out=out+"is not"
+                index=index+1
+        else:
+            out=out+str[index]
+        index=index+1
+    return out
+
+
+#print(notReplace("is test"))
+#print(notReplace("is-is"))
+#print(notReplace("This is right"))
